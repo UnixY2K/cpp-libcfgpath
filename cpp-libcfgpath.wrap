@@ -1,0 +1,6 @@
+[wrap-git]
+url = https://gitlab.com/ninjaoflight5/cpp-libcfgpath.git
+revision = head
+
+[provide]
+dependency_names = cpp_libcfgpath

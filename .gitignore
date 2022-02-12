@@ -1,0 +1,6 @@
+# meson
+builddir/
+compile_commands.json
+
+# vscode/clangd
+.cache
