@@ -1,6 +1,7 @@
 #include <cfgpathpp/cfgpath.hpp>
 #include <stdexcept>
 #include <string>
+#include <cstdlib>
 
 namespace cfgpathpp::impl {
 const std::string getHomeDir() {
