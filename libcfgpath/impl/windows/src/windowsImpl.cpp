@@ -2,10 +2,12 @@
 #include <Windows.h>
 #include <cfgpathpp/cfgpath.hpp>
 #include <codecvt>
+#include <combaseapi.h>
 #include <cstdlib>
 #include <locale>
 #include <stdexcept>
 #include <string>
+#include <winnt.h>
 
 namespace cfgpathpp::impl {
 
@@ -54,33 +56,37 @@ const std::wstring string_to_wstring(const std::string &str) {
 	return result;
 }
 
-const std::string getHomeDir() {
-	WCHAR path[MAX_PATH];
-	if (SUCCEEDED(SHGetFolderPathW(nullptr, CSIDL_PROFILE, nullptr, 0, path))) {
-		return wstring_to_string(path);
+const std::string getKnowDir(const GUID &guid) {
+	PWSTR winPath = nullptr;
+	HRESULT hr = SHGetKnownFolderPath(guid, 0, nullptr, &winPath);
+	if (FAILED(hr)) {
+		CoTaskMemFree(winPath);
+		throw std::runtime_error("SHGetKnownFolderPath() failed: " +
+		                         std::to_string(hr));
 	}
-	throw std::runtime_error("SHGetFolderPathW() failed");
+	std::string path = wstring_to_string(winPath);
+	CoTaskMemFree(winPath);
+	return path;
 }
 
-const std::string getUserConfigDir(const bool local = true) {
-	// get user appdata dir
-	WCHAR path[MAX_PATH];
-	if (SUCCEEDED(SHGetFolderPathW(nullptr,
-	                               true ? CSIDL_APPDATA : CSIDL_LOCAL_APPDATA,
-	                               nullptr, 0, path))) {
-		return wstring_to_string(path);
-	}
-	throw std::runtime_error("SHGetFolderPathW() failed");
+const std::string getHomeDir() {
+	// %USERPROFILE%
+	return getKnowDir(FOLDERID_Profile);
+}
+
+const std::string getUserConfigDir() {
+	// %APPDATA%
+	return getKnowDir(FOLDERID_RoamingAppData);
 }
 
 const std::string getUserDataDir() {
-	// the same as user config dir
-	return getUserConfigDir();
+	// %LOCALAPPDATA%
+	return getKnowDir(FOLDERID_LocalAppData);
 }
 
 const std::string getUserCacheDir() {
-	// same as user cache/local appdata dir
-	return getUserConfigDir(true);
+	// %LOCALAPPDATA%\Temp
+	return getKnowDir(FOLDERID_LocalAppData) + "\\Temp";
 }
 
 } // namespace cfgpathpp::impl
