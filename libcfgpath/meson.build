@@ -15,7 +15,7 @@ cpp_libcfgpath_args    += cpp_libcfgpath_impl_args
 cpp_libcfgpath_link    += cpp_libcfgpath_impl_link
 cpp_libcfgpath_deps    += cpp_libcfgpath_impl_deps
 
-cpp_libcfgpath_lib = library('appcenter-sdk',
+cpp_libcfgpath_lib = library('cfgpathpp',
                         cpp_libcfgpath_srcs,
                         include_directories : cpp_libcfgpath_inc,
                         cpp_args: cpp_libcfgpath_args,
