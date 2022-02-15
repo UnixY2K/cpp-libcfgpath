@@ -31,7 +31,7 @@ stages:          # List of stages for jobs, and their order of execution
 config-job:
   stage: setup
   script:
-    - pacman -Sy --noconfirm meson ninja clang catch2 git util-linux-libs pkgconf
+    - pacman -Syu --noconfirm meson ninja clang catch2 git util-linux-libs pkgconf
     - meson builddir -Dbuild_tests=true -Db_coverage=true
   artifacts:
     expire_in: 1 hour
@@ -44,7 +44,7 @@ build-job:       # This job runs in the build stage, which runs first.
   dependencies:
     - config-job
   script:
-    - pacman -Sy --noconfirm meson ninja clang catch2 util-linux-libs pkgconf
+    - pacman -Syu --noconfirm meson ninja clang catch2 util-linux-libs pkgconf
     - meson compile -C builddir
   artifacts:
     expire_in: 1 hour
@@ -57,7 +57,7 @@ unit-test-job:   # This job runs in the test stage.
   dependencies:
     - build-job
   script:
-    - pacman -Sy --noconfirm meson clang
+    - pacman -Syu --noconfirm meson clang
     - cd builddir 
     - ./test/testexe --reporter junit > meson-logs/testlog.junit.xml
   artifacts:
@@ -74,7 +74,7 @@ lint-test-job:   # This job also runs in the test stage.
   dependencies:
     - build-job
   script:
-    - pacman -Sy --noconfirm meson ninja clang perl util-linux-libs pkgconf
+    - pacman -Syu --noconfirm meson ninja clang perl util-linux-libs pkgconf
     - cd builddir
     - ninja scan-build
 
@@ -83,7 +83,7 @@ test-coverage-job:
   dependencies:
     - build-job
   script:
-    - pacman -Sy --noconfirm gcovr ninja meson
+    - pacman -Syu --noconfirm gcovr ninja meson
     - ninja coverage-xml -C builddir
   coverage: /^\s*lines:\s*\d+.\d+\%/
   artifacts:
@@ -98,7 +98,7 @@ deploy-job source:      # This job runs in the deploy stage.
   dependencies:
     - unit-test-job
   script:
-    - pacman -Sy --noconfirm meson ninja git
+    - pacman -Syu --noconfirm meson ninja git
     - cd builddir
     - meson dist --no-tests
 
