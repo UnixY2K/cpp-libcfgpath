@@ -18,6 +18,7 @@ LIB_CFGPathAPI void LIB_CFGPATHPP_getAppDataPath(const char *appName,
                                                  char **path, char **errorMsg);
 LIB_CFGPathAPI void LIB_CFGPATHPP_getAppCachePath(const char *appName,
                                                   char **path, char **errorMsg);
+LIB_CFGPathAPI void LIB_CFGPATHPP_generateAppHash(char **hash, char **errorMsg);
 
 LIB_CFGPathAPI void LIB_CFGPATHPP_free(void *ptr);
 } // extern "C"

@@ -1,5 +1,6 @@
 #include <Shlobj.h> // need to include definitions of constants
 #include <Windows.h>
+#include <libloaderapi.h>
 #include <cfgpathpp/cfgpath.hpp>
 #include <codecvt>
 #include <combaseapi.h>
@@ -87,6 +88,12 @@ const std::string getUserDataDir() {
 const std::string getUserCacheDir() {
 	// %LOCALAPPDATA%\Temp
 	return getKnowDir(FOLDERID_LocalAppData) + "\\Temp";
+}
+
+const std::string generateAppHash() {
+	char buf[MAX_PATH];
+	GetModuleFileNameA(nullptr, buf, MAX_PATH);
+	return buf;
 }
 
 } // namespace cfgpathpp::impl

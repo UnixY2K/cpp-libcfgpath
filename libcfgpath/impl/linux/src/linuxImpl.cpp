@@ -1,7 +1,8 @@
 #include <cfgpathpp/cfgpath.hpp>
+#include <cstdlib>
+#include <fstream>
 #include <stdexcept>
 #include <string>
-#include <cstdlib>
 
 namespace cfgpathpp::impl {
 const std::string getHomeDir() {
@@ -37,6 +38,12 @@ const std::string getUserCacheDir() {
 		return getHomeDir() + "/.cache";
 	}
 	return std::string(cHomeDir);
+}
+
+const std::string generateAppHash() {
+	std::string sp;
+	std::ifstream("/proc/self/comm") >> sp;
+	return sp;
 }
 
 } // namespace cfgpathpp::impl

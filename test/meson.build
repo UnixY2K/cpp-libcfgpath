@@ -1,6 +1,7 @@
 test_sources = [
     'source.cpp',
     'tests/CFGPathTest.cpp',
+    'tests/GenerateAppHashTest.cpp',
 ]
 
 test_dependencies = [

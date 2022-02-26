@@ -11,6 +11,11 @@ catch2_dep = dependency(
                 fallback: ['catch2', 'catch2_dep']
 )
 
+## xxhash - for fast hash 
+xxhash_dep = dependency(
+                'xxhash',
+                fallback: ['xxhash', 'xxhash_dep']
+)
 
 subdir('libcfgpath')
 if get_option('build_tests')

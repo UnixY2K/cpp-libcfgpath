@@ -1,20 +1,15 @@
 #include <cstdlib>
 #define LIB_CFGPathLIBRARY_EXPORT
 #include <cfgpathpp/cfgpath.hpp>
+#include <cfgpathpp/impl/impl.hpp>
 #include <cfgpathpp/private/api.hpp>
 #include <cstring>
 #include <exception>
 #include <filesystem>
 #include <string>
+#include <xxhash.h>
 
 namespace cfgpathpp {
-// contains platform-dependent definitions
-namespace impl {
-const std::string getHomeDir();
-const std::string getUserConfigDir();
-const std::string getUserDataDir();
-const std::string getUserCacheDir();
-} // namespace impl
 
 namespace util {
 void createPath(std::string path) {
@@ -117,6 +112,20 @@ LIB_CFGPathAPI void LIB_CFGPATHPP_getAppCachePath(const char *appName,
 	} catch (std::exception const &err) {
 		free(*path);
 		path = nullptr;
+		*errorMsg = copyString(err.what());
+	}
+}
+
+LIB_CFGPathAPI void LIB_CFGPATHPP_generateAppHash(char **hash,
+                                                  char **errorMsg) {
+	try {
+		std::string appHash = impl::generateAppHash();
+		// make a hash of the app hash
+		appHash = std::to_string(XXH64(appHash.c_str(), appHash.length(), 0));
+		*hash = copyString(appHash);
+	} catch (std::exception const &err) {
+		free(*hash);
+		hash = nullptr;
 		*errorMsg = copyString(err.what());
 	}
 }

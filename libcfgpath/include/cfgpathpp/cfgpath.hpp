@@ -19,7 +19,7 @@ inline const std::string getString(char *str) {
 		return std::string();
 	}
 	std::string result(str);
-	API::LIB_CFGPATHPP_free(static_cast<void*>(str));
+	API::LIB_CFGPATHPP_free(static_cast<void *>(str));
 	return result;
 }
 } // namespace private_
@@ -128,6 +128,16 @@ inline const std::string getAppCachePath(std::string appName) {
 		throw cfgpath_exception(private_::getString(errorMsg));
 	}
 	return private_::getString(path);
+}
+
+inline const std::string generateAppHash() {
+	char *hash = nullptr;
+	char *errorMsg = nullptr;
+	API::LIB_CFGPATHPP_generateAppHash(&hash, &errorMsg);
+	if (errorMsg) {
+		throw cfgpath_exception(private_::getString(errorMsg));
+	}
+	return private_::getString(hash);
 }
 
 } // namespace cfgpathpp
