@@ -2,5 +2,6 @@
 builddir/
 compile_commands.json
 
-# vscode/clangd
+# vscode
 .cache
+.vscode
