@@ -1,6 +1,6 @@
 [wrap-git]
 url = https://github.com/ninjaoflight/xxHash.git
-revision = v0.8.0-meson
+revision = v0.8.1-meson
 
 [provide]
 libxxhash = xxhash_dep
