@@ -1,7 +1,6 @@
 #include <Shlobj.h> // need to include definitions of constants
 #include <Windows.h>
 #include <libloaderapi.h>
-#include <cfgpathpp/cfgpath.hpp>
 #include <codecvt>
 #include <combaseapi.h>
 #include <cstdlib>
@@ -9,6 +8,8 @@
 #include <stdexcept>
 #include <string>
 #include <winnt.h>
+
+#include <cfgpathpp/cfgpath.hpp>
 
 namespace cfgpathpp::impl {
 

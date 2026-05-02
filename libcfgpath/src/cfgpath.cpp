@@ -1,13 +1,15 @@
+#define LIBCFGPathLIBRARY_EXPORT
 #include <cstdlib>
-#define LIB_CFGPathLIBRARY_EXPORT
-#include <cfgpathpp/cfgpath.hpp>
-#include <cfgpathpp/impl/impl.hpp>
-#include <cfgpathpp/private/api.hpp>
 #include <cstring>
 #include <exception>
 #include <filesystem>
 #include <string>
+
 #include <xxhash.h>
+
+#include <cfgpathpp/cfgpath.hpp>
+#include <cfgpathpp/impl/impl.hpp>
+#include <cfgpathpp/private/api.hpp>
 
 namespace cfgpathpp {
 
@@ -34,7 +36,7 @@ char *copyString(std::string str) {
 }
 // C function calls
 extern "C" {
-LIB_CFGPathAPI void LIB_CFGPATHPP_getHomeDir(char **path, char **errorMsg) {
+LIBCFGPathAPI void LIBCFGPathPP_getHomeDir(char **path, char **errorMsg) {
 	try {
 		std::string homeDir = impl::getHomeDir();
 		*path = copyString(homeDir);
@@ -44,7 +46,7 @@ LIB_CFGPathAPI void LIB_CFGPATHPP_getHomeDir(char **path, char **errorMsg) {
 		*errorMsg = copyString(err.what());
 	}
 }
-LIB_CFGPathAPI void LIB_CFGPATHPP_getUserConfigDir(char **path,
+LIBCFGPathAPI void LIBCFGPathPP_getUserConfigDir(char **path,
                                                    char **errorMsg) {
 	try {
 		std::string userConfigDir = impl::getUserConfigDir();
@@ -55,7 +57,7 @@ LIB_CFGPathAPI void LIB_CFGPATHPP_getUserConfigDir(char **path,
 		*errorMsg = copyString(err.what());
 	}
 }
-LIB_CFGPathAPI void LIB_CFGPATHPP_getUserDataDir(char **path, char **errorMsg) {
+LIBCFGPathAPI void LIBCFGPathPP_getUserDataDir(char **path, char **errorMsg) {
 	try {
 		std::string userDataDir = impl::getUserDataDir();
 		*path = copyString(userDataDir);
@@ -65,7 +67,7 @@ LIB_CFGPathAPI void LIB_CFGPATHPP_getUserDataDir(char **path, char **errorMsg) {
 		*errorMsg = copyString(err.what());
 	}
 }
-LIB_CFGPathAPI void LIB_CFGPATHPP_getUserCacheDir(char **path,
+LIBCFGPathAPI void LIBCFGPathPP_getUserCacheDir(char **path,
                                                   char **errorMsg) {
 	try {
 		std::string userCacheDir = impl::getUserCacheDir();
@@ -77,7 +79,7 @@ LIB_CFGPathAPI void LIB_CFGPATHPP_getUserCacheDir(char **path,
 		*errorMsg = copyString(err.what());
 	}
 }
-LIB_CFGPathAPI void LIB_CFGPATHPP_getAppConfigPath(const char *appName,
+LIBCFGPathAPI void LIBCFGPathPP_getAppConfigPath(const char *appName,
                                                    char **path,
                                                    char **errorMsg) {
 	try {
@@ -90,7 +92,7 @@ LIB_CFGPathAPI void LIB_CFGPATHPP_getAppConfigPath(const char *appName,
 		*errorMsg = copyString(err.what());
 	}
 }
-LIB_CFGPathAPI void LIB_CFGPATHPP_getAppDataPath(const char *appName,
+LIBCFGPathAPI void LIBCFGPathPP_getAppDataPath(const char *appName,
                                                  char **path, char **errorMsg) {
 	try {
 		std::string appDataPath = impl::getUserDataDir() + "/" + appName;
@@ -102,7 +104,7 @@ LIB_CFGPathAPI void LIB_CFGPATHPP_getAppDataPath(const char *appName,
 		*errorMsg = copyString(err.what());
 	}
 }
-LIB_CFGPathAPI void LIB_CFGPATHPP_getAppCachePath(const char *appName,
+LIBCFGPathAPI void LIBCFGPathPP_getAppCachePath(const char *appName,
                                                   char **path,
                                                   char **errorMsg) {
 	try {
@@ -116,7 +118,7 @@ LIB_CFGPathAPI void LIB_CFGPATHPP_getAppCachePath(const char *appName,
 	}
 }
 
-LIB_CFGPathAPI void LIB_CFGPATHPP_generateAppHash(char **hash,
+LIBCFGPathAPI void LIBCFGPathPP_generateAppHash(char **hash,
                                                   char **errorMsg) {
 	try {
 		std::string appHash = impl::generateAppHash();
@@ -129,7 +131,7 @@ LIB_CFGPathAPI void LIB_CFGPATHPP_generateAppHash(char **hash,
 		*errorMsg = copyString(err.what());
 	}
 }
-LIB_CFGPathAPI void LIB_CFGPATHPP_free(void *ptr) { free(ptr); }
+LIBCFGPathAPI void LIBCFGPathPP_free(void *ptr) { free(ptr); }
 }
 } // namespace API
 } // namespace cfgpathpp

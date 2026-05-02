@@ -6,9 +6,9 @@ project(
 )
 version = '1.0.0 v2022'
 
-catch2_dep = dependency(
-                'catch2',
-                fallback: ['catch2', 'catch2_dep']
+catch2_with_main_dep = dependency(
+                'catch2_with_main',
+                fallback: ['catch2', 'catch2_with_main_dep']
 )
 
 ## xxhash - for fast hash 

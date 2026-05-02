@@ -1,11 +1,10 @@
 test_sources = [
-    'source.cpp',
     'tests/CFGPathTest.cpp',
     'tests/GenerateAppHashTest.cpp',
 ]
 
 test_dependencies = [
-    catch2_dep,
+    catch2_with_main_dep,
     cpp_libcfgpath_dep,
 ]
 

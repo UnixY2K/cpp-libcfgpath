@@ -5,22 +5,22 @@
 namespace cfgpathpp {
 namespace API {
 extern "C" {
-LIB_CFGPathAPI void LIB_CFGPATHPP_getHomeDir(char **path, char **errorMsg);
-LIB_CFGPathAPI void LIB_CFGPATHPP_getUserConfigDir(char **path,
+LIBCFGPathAPI void LIBCFGPathPP_getHomeDir(char **path, char **errorMsg);
+LIBCFGPathAPI void LIBCFGPathPP_getUserConfigDir(char **path,
                                                    char **errorMsg);
-LIB_CFGPathAPI void LIB_CFGPATHPP_getUserDataDir(char **path, char **errorMsg);
-LIB_CFGPathAPI void LIB_CFGPATHPP_getUserCacheDir(char **path, char **errorMsg);
+LIBCFGPathAPI void LIBCFGPathPP_getUserDataDir(char **path, char **errorMsg);
+LIBCFGPathAPI void LIBCFGPathPP_getUserCacheDir(char **path, char **errorMsg);
 
-LIB_CFGPathAPI void LIB_CFGPATHPP_getAppConfigPath(const char *appName,
+LIBCFGPathAPI void LIBCFGPathPP_getAppConfigPath(const char *appName,
                                                    char **path,
                                                    char **errorMsg);
-LIB_CFGPathAPI void LIB_CFGPATHPP_getAppDataPath(const char *appName,
+LIBCFGPathAPI void LIBCFGPathPP_getAppDataPath(const char *appName,
                                                  char **path, char **errorMsg);
-LIB_CFGPathAPI void LIB_CFGPATHPP_getAppCachePath(const char *appName,
+LIBCFGPathAPI void LIBCFGPathPP_getAppCachePath(const char *appName,
                                                   char **path, char **errorMsg);
-LIB_CFGPathAPI void LIB_CFGPATHPP_generateAppHash(char **hash, char **errorMsg);
+LIBCFGPathAPI void LIBCFGPathPP_generateAppHash(char **hash, char **errorMsg);
 
-LIB_CFGPathAPI void LIB_CFGPATHPP_free(void *ptr);
+LIBCFGPathAPI void LIBCFGPathPP_free(void *ptr);
 } // extern "C"
 } // namespace API
 } // namespace cfgpathpp

@@ -12,11 +12,11 @@ cpp_libcfgpath_impl_src_dir = 'impl' / impl_dir
 
 if fs.is_dir(impl_dir)
     message('Using ' + impl_dir + ' implementation: ')
+	impl_sources = []
     subdir(impl_dir)
     foreach src : impl_sources
         cpp_libcfgpath_impl_srcs += cpp_libcfgpath_impl_src_dir + '/' + src
     endforeach
 else
-    message('platform' + impl_dir + 'not supported, aborting')
-    assert(false)
+	error('platform ' + impl_dir + ' not supported, aborting')
 endif

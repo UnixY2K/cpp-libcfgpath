@@ -1,8 +1,9 @@
 #pragma once
-#include <cfgpathpp/private/api.hpp>
-#include <cfgpathpp/private/exportAPI.hpp>
 #include <stdexcept>
 #include <string>
+
+#include <cfgpathpp/private/api.hpp>
+#include <cfgpathpp/private/exportAPI.hpp>
 
 namespace cfgpathpp {
 
@@ -19,7 +20,7 @@ inline const std::string getString(char *str) {
 		return std::string();
 	}
 	std::string result(str);
-	API::LIB_CFGPATHPP_free(static_cast<void *>(str));
+	API::LIBCFGPathPP_free(static_cast<void *>(str));
 	return result;
 }
 } // namespace private_
@@ -32,7 +33,7 @@ inline const std::string getString(char *str) {
 inline const std::string getHomePath() {
 	char *homePath = nullptr;
 	char *errorMsg = nullptr;
-	API::LIB_CFGPATHPP_getHomeDir(&homePath, &errorMsg);
+	API::LIBCFGPathPP_getHomeDir(&homePath, &errorMsg);
 	if (errorMsg) {
 		throw cfgpath_exception(private_::getString(errorMsg));
 	}
@@ -47,7 +48,7 @@ inline const std::string getHomePath() {
 inline const std::string getUserConfigPath() {
 	char *userConfigPath = nullptr;
 	char *errorMsg = nullptr;
-	API::LIB_CFGPATHPP_getUserConfigDir(&userConfigPath, &errorMsg);
+	API::LIBCFGPathPP_getUserConfigDir(&userConfigPath, &errorMsg);
 	if (errorMsg) {
 		throw cfgpath_exception(private_::getString(errorMsg));
 	}
@@ -62,7 +63,7 @@ inline const std::string getUserConfigPath() {
 inline const std::string getUserDataPath() {
 	char *userDataPath = nullptr;
 	char *errorMsg = nullptr;
-	API::LIB_CFGPATHPP_getUserDataDir(&userDataPath, &errorMsg);
+	API::LIBCFGPathPP_getUserDataDir(&userDataPath, &errorMsg);
 	if (errorMsg) {
 		throw cfgpath_exception(private_::getString(errorMsg));
 	}
@@ -77,7 +78,7 @@ inline const std::string getUserDataPath() {
 inline const std::string getUserCachePath() {
 	char *userCachePath = nullptr;
 	char *errorMsg = nullptr;
-	API::LIB_CFGPATHPP_getUserCacheDir(&userCachePath, &errorMsg);
+	API::LIBCFGPathPP_getUserCacheDir(&userCachePath, &errorMsg);
 	if (errorMsg) {
 		throw cfgpath_exception(private_::getString(errorMsg));
 	}
@@ -93,7 +94,7 @@ inline const std::string getUserCachePath() {
 inline const std::string getAppConfigPath(std::string appName) {
 	char *path = nullptr;
 	char *errorMsg = nullptr;
-	API::LIB_CFGPATHPP_getAppConfigPath(appName.data(), &path, &errorMsg);
+	API::LIBCFGPathPP_getAppConfigPath(appName.data(), &path, &errorMsg);
 	if (errorMsg) {
 		throw cfgpath_exception(private_::getString(errorMsg));
 	}
@@ -108,7 +109,7 @@ inline const std::string getAppConfigPath(std::string appName) {
 inline const std::string getAppDataPath(std::string appName) {
 	char *path = nullptr;
 	char *errorMsg = nullptr;
-	API::LIB_CFGPATHPP_getAppDataPath(appName.data(), &path, &errorMsg);
+	API::LIBCFGPathPP_getAppDataPath(appName.data(), &path, &errorMsg);
 	if (errorMsg) {
 		throw cfgpath_exception(private_::getString(errorMsg));
 	}
@@ -123,7 +124,7 @@ inline const std::string getAppDataPath(std::string appName) {
 inline const std::string getAppCachePath(std::string appName) {
 	char *path = nullptr;
 	char *errorMsg = nullptr;
-	API::LIB_CFGPATHPP_getAppCachePath(appName.data(), &path, &errorMsg);
+	API::LIBCFGPathPP_getAppCachePath(appName.data(), &path, &errorMsg);
 	if (errorMsg) {
 		throw cfgpath_exception(private_::getString(errorMsg));
 	}
@@ -133,7 +134,7 @@ inline const std::string getAppCachePath(std::string appName) {
 inline const std::string generateAppHash() {
 	char *hash = nullptr;
 	char *errorMsg = nullptr;
-	API::LIB_CFGPATHPP_generateAppHash(&hash, &errorMsg);
+	API::LIBCFGPathPP_generateAppHash(&hash, &errorMsg);
 	if (errorMsg) {
 		throw cfgpath_exception(private_::getString(errorMsg));
 	}

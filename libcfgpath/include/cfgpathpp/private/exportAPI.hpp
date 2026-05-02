@@ -1,9 +1,9 @@
 #pragma once
 
-#if defined(LIB_CFGPathLIBRARY_EXPORT)
-#   define LIB_CFGPathAPI EXPORT
+#if defined(LIBCFGPathLIBRARY_EXPORT)
+#   define LIBCFGPathAPI EXPORT
 #else
-#   define LIB_CFGPathAPI IMPORT
+#   define LIBCFGPathAPI IMPORT
 #endif
 
 #if defined(_MSC_VER)
