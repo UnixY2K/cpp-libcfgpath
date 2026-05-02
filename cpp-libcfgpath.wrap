@@ -1,5 +1,5 @@
 [wrap-git]
-url = https://gitlab.com/ninjaoflight5/cpp-libcfgpath.git
+url = https://github.com/unixy2k/cpp-libcfgpath.git
 revision = head
 
 [provide]
